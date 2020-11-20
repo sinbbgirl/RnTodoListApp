@@ -12,21 +12,21 @@ const TodoInsert = ({ onAddTodo }) => {
     const handleAddTodo = () => {
         if (newTodoItem !== '') {
             console.log(`newTodoItem: ${newTodoItem}`)
-            onAddTodo(newTodoItem);
+            onAddTodo(newTodoItem.replace('\n', ''));
         } else {
             Alert.alert('알림','내용을 입력하세요')
             return;
         }
         setNewTodoItem('');
     }
-    
+
     // 구글키보드에서는 엔터키누르면 되는데 네이버키보드는 안돼
-    const handleKeyPress = e => {
-        console.log('nativeKeyPress',e.nativeEvent.key)
-        if (e.nativeEvent.key === 'Enter'){
-            handleAddTodo();
-        }
-    }
+    // const handleKeyPress = e => {
+    //     console.log('nativeKeyPress',e.nativeEvent.key)
+    //     if (e.nativeEvent.key === 'Enter'){
+    //         handleAddTodo();
+    //     }
+    // }
 
     return (
         <View style={styles.inputContainer}>
@@ -35,8 +35,7 @@ const TodoInsert = ({ onAddTodo }) => {
                 placeholder="Make Your Plan"
                 placeholderTextColor="#afafaf"
                 value={newTodoItem}
-                onChangeText={handleTodoInput} 
-                onKeyPress={handleKeyPress}/>
+                onChangeText={handleTodoInput} />
             <View style={styles.button}>
                 <Button
                     title="추가"
